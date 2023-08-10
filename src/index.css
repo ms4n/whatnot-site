@@ -10,7 +10,7 @@
 }
 
 .noise {
-  background: url("noise.png");
+  background: url("/noise.png");
   background-color: #22c55e;
   background-attachment: fixed;
 }
