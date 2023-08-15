@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "inter";
+  src: url("/fonts/inter-variable.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "kollektif";
+  src: url("/fonts/kollektif-bold.ttf") format("truetype");
+}
