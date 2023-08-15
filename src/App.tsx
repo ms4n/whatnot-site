@@ -6,7 +6,7 @@ export default function App() {
     <div className='bg-white'>
       <nav className='p-6 lg:px-8 flex items-center justify-between'>
         <a
-          className='text-xl md:text-3xl font-kollektifbold text-green-500'
+          className='text-2xl md:text-3xl font-kollektifbold text-green-500'
           href='/'
         >
           whatnot
