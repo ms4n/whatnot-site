@@ -40,7 +40,7 @@ export default function App() {
               Drive.
             </p>
             <Button
-              className='md:w-52 w-36 h-12 md:my-10 my-8  shadow border-4 text-white font-semibold bg-green-400 rounded-lg border-green-300 hover:bg-green-400/80 ring-4 ring-green-100'
+              className='md:w-52 w-36 h-12 md:my-10 my-8 shadow-xl text-white font-semibold bg-green-500 rounded-lg hover:bg-green-500/80 ring-4 ring-green-300'
               type='submit'
             >
               Get Started!
