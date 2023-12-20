@@ -1,10 +1,11 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div>
-      <div className="relative  px-6 lg:px-8 font-inter">
-        <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden blur-3xl sm:-top-80">
+    <div className="bg-white">
+      <div className="relative isolate px-6 lg:px-8 font-inter">
+        <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
           <div
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tl from-[#22c55e] to-[#22c55e]/60 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             style={{
@@ -13,6 +14,22 @@ export default function Home() {
             }}
           />
         </div>
+
+        <div className="my-8 lg:px-8 flex items-center justify-between">
+          <Link
+            className="text-2xl md:text-3xl font-kollektifbold text-green-500"
+            href={"/"}
+          >
+            whatnot
+          </Link>
+
+          <Link href={"privacy"}>
+            <p className="text-xs cursor-pointer md:text-base">
+              Privacy Policy
+            </p>
+          </Link>
+        </div>
+
         <div className="py-20 lg:py-32">
           <div className="mx-auto text-center max-w-md md:max-w-2xl">
             <h1 className="text-4xl font-semibold tracking-tight text-gray-800 md:text-6xl">
@@ -28,15 +45,13 @@ export default function Home() {
             <Button
               className="md:w-52 w-36 h-12 md:my-10 my-8 shadow-xl text-white font-semibold bg-green-500 rounded-lg hover:bg-green-500/80 ring-2 ring-green-300"
               type="button"
-              onClick={() => {
-                window.location.href =
-                  "https://api.whatsapp.com/send?phone=15550343831&text=Hello!%20%F0%9F%91%8B";
-              }}
+              // onClick={}
             >
               Get Started!
             </Button>
           </div>
         </div>
+
         <div
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true"
