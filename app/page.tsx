@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className="bg-white">
       <div className="relative isolate px-6 lg:px-8 font-inter">
@@ -45,7 +50,11 @@ export default function Home() {
             <Button
               className="md:w-52 w-36 h-12 md:my-10 my-8 shadow-xl text-white font-semibold bg-green-500 rounded-lg hover:bg-green-500/80 ring-2 ring-green-300"
               type="button"
-              // onClick={}
+              onClick={() => {
+                router.push(
+                  "https://api.whatsapp.com/send?phone=15550343831&text=Hello!%20%F0%9F%91%8B"
+                );
+              }}
             >
               Get Started!
             </Button>
