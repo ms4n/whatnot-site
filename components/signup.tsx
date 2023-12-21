@@ -44,10 +44,10 @@ const SignUp = () => {
     <main className="flex items-center justify-center text-left">
       <Card>
         <CardHeader>
-          <CardTitle className="text-green-500 text-xl md:text-2xl">
-            Link your WhatsApp number with <br /> Google Suite
+          <CardTitle className="">
+            Link your WhatsApp number with Google Suite
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="">
             Verify your WhatsApp number with OTP
           </CardDescription>
         </CardHeader>

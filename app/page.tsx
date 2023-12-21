@@ -28,7 +28,7 @@ export default function Home() {
               What not can your <span className="text-green-500">WhatsApp</span>{" "}
               do?
             </h1>
-            <p className="mt-6 m-auto text-sm md:text-base md:leading-7 sm:max-w-xl max-w-sm leading-6 text-gray-600">
+            <p className="mt-6 m-auto text-sm md:text-base md:leading-7 sm:max-w-xl max-w-sm leading-6 text-gray-500">
               Effortlessly sync WhatsApp with Google Suite: Transform WhatsApp
               messages into notes on Google Docs, schedule events through
               WhatsApp on Google Calendar, and securely save media on Google
