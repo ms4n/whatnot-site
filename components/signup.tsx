@@ -18,18 +18,14 @@ const SignUp = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleCountryCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // Ensure the input starts with "+"
     if (e.target.value.startsWith("+")) {
-      // Allow only the characters after "+"
       setCountryCode("+" + e.target.value.slice(1, 4));
     }
   };
 
   const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // Remove non-digit characters
     const cleanedPhoneNumber = e.target.value.replace(/\D/g, "");
 
-    // Insert a space after the 5th character if the length is greater than 5
     let formattedPhoneNumber = cleanedPhoneNumber.slice(0, 5);
     if (cleanedPhoneNumber.length > 5) {
       formattedPhoneNumber += " " + cleanedPhoneNumber.slice(5, 10);
@@ -48,7 +44,9 @@ const SignUp = () => {
     <main className="flex items-center justify-center text-left">
       <Card>
         <CardHeader>
-          <CardTitle>Link your WhatsApp number with Google Suite</CardTitle>
+          <CardTitle className="text-green-500 text-xl md:text-2xl">
+            Link your WhatsApp number with <br /> Google Suite
+          </CardTitle>
           <CardDescription>
             Verify your WhatsApp number with OTP
           </CardDescription>
