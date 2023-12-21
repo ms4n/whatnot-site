@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import Navbar from "@/components/navbar";
 
 export default function Home() {
   const router = useRouter();
@@ -20,20 +20,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="my-8 lg:px-8 flex items-center justify-between">
-          <Link
-            className="text-2xl md:text-3xl font-kollektifbold text-green-500"
-            href={"/"}
-          >
-            whatnot
-          </Link>
-
-          <Link href={"privacy"}>
-            <p className="text-xs cursor-pointer md:text-base">
-              Privacy Policy
-            </p>
-          </Link>
-        </div>
+        <Navbar />
 
         <div className="py-20 lg:py-32">
           <div className="mx-auto text-center max-w-md md:max-w-2xl">
@@ -48,7 +35,7 @@ export default function Home() {
               Drive.
             </p>
             <Button
-              className="md:w-52 w-36 h-12 md:my-10 my-8 shadow-xl text-white font-semibold bg-green-500 rounded-lg hover:bg-green-500/80 ring-2 ring-green-300"
+              className="md:w-52 w-36 h-12 md:my-10 my-8 shadow-xl text-white font-semibold bg-green-500 rounded-lg hover:scale-105 transition ring-2 ring-green-300"
               type="button"
               onClick={() => {
                 router.push(
