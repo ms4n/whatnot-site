@@ -13,13 +13,27 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const SignUp = () => {
-  const [countryCode, setCountryCode] = useState("+91");
-  const [phoneNumber, setPhoneNumber] = useState("");
+import { useAppDispatch } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
+
+import {
+  setCountryCode,
+  setPhoneNumber,
+} from "@/redux/features/phoneNumberSlice";
+
+interface SignUpProps {
+  onSendOTP: () => void;
+}
+
+const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
+  const countryCode = useAppSelector((state) => state.phoneNumber.countryCode);
+  const phoneNumber = useAppSelector((state) => state.phoneNumber.phoneNumber);
+
+  const dispatch = useAppDispatch();
 
   const handleCountryCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.startsWith("+")) {
-      setCountryCode("+" + e.target.value.slice(1, 4));
+      dispatch(setCountryCode("+" + e.target.value.slice(1, 4)));
     }
   };
 
@@ -31,13 +45,15 @@ const SignUp = () => {
       formattedPhoneNumber += " " + cleanedPhoneNumber.slice(5, 10);
     }
 
-    setPhoneNumber(formattedPhoneNumber);
+    dispatch(setPhoneNumber(formattedPhoneNumber));
   };
 
   const handleSendOTP = () => {
     // Your logic to send OTP
     // You can use countryCode and phoneNumber in your API call
     console.log("Sending OTP to:", countryCode + phoneNumber);
+
+    onSendOTP();
   };
 
   return (
