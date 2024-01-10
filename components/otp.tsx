@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import OTPInput from "react-otp-input";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +25,20 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
   const phoneNumber = useAppSelector((state) => state.phoneNumber.phoneNumber);
 
   const [otp, setOtp] = useState("");
+  const [countdown, setCountdown] = useState(6);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prevCountdown) => Math.max(0, prevCountdown - 1));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Format the countdown in mm:ss format
+  const formattedCountdown = `${Math.floor(countdown / 60)}:${(countdown % 60)
+    .toString()
+    .padStart(2, "0")}`;
 
   const customInputStyle: React.CSSProperties = {
     width: "40px",
@@ -37,7 +51,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
   };
 
   return (
-    <main className="flex items-center justify-center text-left">
+    <div className="flex items-center justify-center text-left">
       <Card>
         <CardHeader>
           <CardTitle className="">
@@ -67,17 +81,26 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
           />
         </CardContent>
 
-        <CardFooter className="flex flex-col gap-4">
+        <CardFooter className="flex flex-col gap-5">
           <CardDescription>
-            OTP Valid for 300 seconds.{" "}
-            <span className="underline cursor-pointer">Resend</span>
+            {countdown <= 0 ? (
+              <>
+                OTP Expired.{" "}
+                <span className="underline cursor-pointer">Resend</span>
+              </>
+            ) : (
+              <>
+                OTP valid for {formattedCountdown} minutes <br /> Didn't recieve
+                OTP? <span className="underline cursor-pointer">Resend</span>
+              </>
+            )}
           </CardDescription>
           <Button className="bg-green-500 text-white hover:scale-105 transition ring-2 ring-green-300">
             Verify OTP
           </Button>
         </CardFooter>
       </Card>
-    </main>
+    </div>
   );
 };
 
