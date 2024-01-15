@@ -25,7 +25,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
   const phoneNumber = useAppSelector((state) => state.phoneNumber.phoneNumber);
 
   const [otp, setOtp] = useState("");
-  const [countdown, setCountdown] = useState(6);
+  const [countdown, setCountdown] = useState(300);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -90,8 +90,9 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
               </>
             ) : (
               <>
-                OTP valid for {formattedCountdown} minutes <br /> Didn't recieve
-                OTP? <span className="underline cursor-pointer">Resend</span>
+                OTP valid for {formattedCountdown} minutes <br /> Didn&apos;t
+                recieve OTP?{" "}
+                <span className="underline cursor-pointer">Resend</span>
               </>
             )}
           </CardDescription>
