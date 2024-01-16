@@ -77,7 +77,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
             onChange={setOtp}
             numInputs={4}
             inputStyle={customInputStyle}
-            renderInput={(props) => <Input {...props} />}
+            renderInput={(props) => <Input required {...props} />}
           />
         </CardContent>
 

@@ -20,6 +20,7 @@ import {
   setCountryCode,
   setPhoneNumber,
 } from "@/redux/features/phoneNumberSlice";
+import { useToast } from "@/components/ui/use-toast";
 
 interface SignUpProps {
   onSendOTP: () => void;
@@ -48,10 +49,25 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
     dispatch(setPhoneNumber(formattedPhoneNumber));
   };
 
+  const { toast } = useToast();
+
   const handleSendOTP = () => {
     // Your logic to send OTP
     // You can use countryCode and phoneNumber in your API call
-    console.log("Sending OTP to:", countryCode + phoneNumber);
+
+    if (!countryCode || !phoneNumber) {
+      toast({
+        className: "bg-red-600 text-white",
+        variant: "destructive",
+        title: "Phone Number Required",
+        description:
+          "Please provide your complete phone number, including the country code.",
+      });
+      return;
+    }
+
+    const phoneNumberString = (countryCode + phoneNumber).replace(/[+ ]/g, "");
+    console.log("Sending OTP to:", phoneNumberString);
 
     onSendOTP();
   };
@@ -75,6 +91,7 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
               id="countrycode"
               type="tel"
               value={countryCode}
+              required
               onChange={handleCountryCodeChange}
               className="basis-1/4"
             />
@@ -82,6 +99,7 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
               id="phone"
               type="tel"
               value={phoneNumber}
+              required
               onChange={handlePhoneNumberChange}
             />
           </div>
