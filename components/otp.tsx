@@ -165,7 +165,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
                 </span>
               ) : (
                 <span>
-                  Didn't receive OTP or it expired?{" "}
+                  Didn&apos;t receive OTP or it expired?{" "}
                   <button
                     onClick={handleResend}
                     disabled={cooldown}
