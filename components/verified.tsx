@@ -1,6 +1,3 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,19 +12,13 @@ const Verified = () => {
     <main className="flex items-center justify-center text-left">
       <Card>
         <CardHeader>
-          <CardTitle className="">
-            Link your WhatsApp number with Google Suite
-          </CardTitle>
+          <CardTitle className="">OTP Verification Successful</CardTitle>
           <CardDescription className="">
-            Verify your WhatsApp number with OTP
+            Redirecting you to the Google login page...
           </CardDescription>
         </CardHeader>
 
-        <CardFooter className="flex flex-col">
-          <Button className="bg-green-500 text-white hover:scale-105 transition ring-2 ring-green-300">
-            Send OTP
-          </Button>
-        </CardFooter>
+        {/* <CardFooter className="flex flex-col"></CardFooter> */}
       </Card>
     </main>
   );

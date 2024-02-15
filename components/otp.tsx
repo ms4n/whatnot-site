@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import OTPInput from "react-otp-input";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,25 +15,107 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { useAppSelector } from "@/redux/hooks";
+import { useToast } from "@/components/ui/use-toast";
+
+import { verifyOTP, sendOTP } from "@/app/utils/api";
 
 interface OtpVerifyProps {
-  onEditPhoneNumber: () => void;
+  setIsVerified: (verified: boolean) => void;
 }
 
-const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
+const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
   const countryCode = useAppSelector((state) => state.phoneNumber.countryCode);
   const phoneNumber = useAppSelector((state) => state.phoneNumber.phoneNumber);
 
+  const [countdown, setCountdown] = useState(30);
+  const [cooldown, setCooldown] = useState(false);
+
   const [otp, setOtp] = useState("");
-  const [countdown, setCountdown] = useState(300);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((prevCountdown) => Math.max(0, prevCountdown - 1));
-    }, 1000);
+    toast({
+      className: "bg-green-500 text-white",
+      title: "OTP Sent Successfully!",
+      description: "Check your WhatsApp for the OTP. Valid for 5 minutes.",
+    });
+  }, []);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+
+    if (countdown > 0) {
+      timer = setInterval(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+    } else {
+      setCooldown(false);
+    }
 
     return () => clearInterval(timer);
-  }, []);
+  }, [countdown]);
+
+  const handleResend = async () => {
+    if (!cooldown) {
+      try {
+        const phoneNumberString = (countryCode + phoneNumber).replace(
+          /[+ ]/g,
+          ""
+        );
+        await sendOTP(phoneNumberString);
+
+        toast({
+          className: "bg-green-500 text-white",
+          title: "OTP Resent!",
+          description:
+            "A new OTP has been sent to your WhatsApp. Please check your messages.",
+        });
+
+        console.log("OTP sent successfully");
+      } catch (error) {
+        toast({
+          className: "bg-red-600 text-white",
+          variant: "destructive",
+          title: "OTP Send Failed",
+          description: "An error occurred while sending OTP. Please try again.",
+        });
+        console.error("Error sending OTP:", error);
+        return;
+      }
+
+      setCountdown(30);
+      setCooldown(true);
+    }
+  };
+
+  const handleVerifyOTP = async () => {
+    try {
+      const phoneNumberString = (countryCode + phoneNumber).replace(
+        /[+ ]/g,
+        ""
+      );
+      const verify = await verifyOTP(phoneNumberString, otp);
+
+      if (verify.data.valid) {
+        setIsVerified(true);
+      } else {
+        toast({
+          className: "bg-red-600 text-white",
+          variant: "destructive",
+          title: "Invalid OTP",
+          description: "Please re-enter the OTP or request a new one.",
+        });
+      }
+    } catch (error) {
+      toast({
+        className: "bg-red-600 text-white",
+        variant: "destructive",
+        title: "OTP Send Failed",
+        description: "An error occurred while sending OTP. Please try again.",
+      });
+      console.error("Error sending OTP:", error);
+      return;
+    }
+  };
 
   // Format the countdown in mm:ss format
   const formattedCountdown = `${Math.floor(countdown / 60)}:${(countdown % 60)
@@ -43,12 +125,14 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
   const customInputStyle: React.CSSProperties = {
     width: "40px",
     height: "40px",
-    border: "2px solid #22c55e",
+    border: "1px solid #22c55e",
     borderRadius: "8px",
     margin: "6px",
     fontSize: "16px",
     color: "black",
   };
+
+  const { toast } = useToast();
 
   return (
     <div className="flex items-center justify-center text-left">
@@ -58,16 +142,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
             Link your WhatsApp number with Google Suite
           </CardTitle>
           <CardDescription className="">
-            Enter the OTP sent to{" "}
-            <span>
-              {countryCode} {phoneNumber}{" "}
-            </span>
-            <span
-              className="underline cursor-pointer"
-              onClick={onEditPhoneNumber}
-            >
-              Wrong number?
-            </span>
+            Enter the OTP sent to {countryCode} {phoneNumber}{" "}
           </CardDescription>
         </CardHeader>
 
@@ -75,28 +150,38 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ onEditPhoneNumber }) => {
           <OTPInput
             value={otp}
             onChange={setOtp}
-            numInputs={4}
+            numInputs={6}
             inputStyle={customInputStyle}
             renderInput={(props) => <Input required {...props} />}
           />
         </CardContent>
 
-        <CardFooter className="flex flex-col gap-5">
+        <CardFooter className="flex flex-col gap-4">
           <CardDescription>
-            {countdown <= 0 ? (
-              <>
-                OTP Expired.{" "}
-                <span className="underline cursor-pointer">Resend</span>
-              </>
-            ) : (
-              <>
-                OTP valid for {formattedCountdown} minutes <br /> Didn&apos;t
-                recieve OTP?{" "}
-                <span className="underline cursor-pointer">Resend</span>
-              </>
-            )}
+            <>
+              {countdown > 0 ? (
+                <span>
+                  Please wait for {formattedCountdown} before you can resend OTP
+                </span>
+              ) : (
+                <span>
+                  Didn't receive OTP or it expired?{" "}
+                  <button
+                    onClick={handleResend}
+                    disabled={cooldown}
+                    className="underline cursor-pointer"
+                  >
+                    Resend
+                  </button>
+                </span>
+              )}
+            </>
           </CardDescription>
-          <Button className="bg-green-500 text-white hover:scale-105 transition ring-2 ring-green-300">
+
+          <Button
+            onClick={handleVerifyOTP}
+            className="bg-green-500 text-white hover:scale-105 transition ring-2 ring-green-300"
+          >
             Verify OTP
           </Button>
         </CardFooter>

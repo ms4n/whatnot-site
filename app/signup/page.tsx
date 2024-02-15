@@ -8,17 +8,12 @@ import { useState } from "react";
 
 const SignUpPage = () => {
   const [isSignUpPhase, setIsSignUpPhase] = useState(true);
+  const [isVerified, setIsVerified] = useState(false);
 
   const handleSendOTP = () => {
     // Your logic to handle OTP sending
     // For example, you can set the state to switch to the OTP verification phase
     setIsSignUpPhase(false);
-  };
-
-  const handleEditPhoneNumber = () => {
-    // Your logic to handle editing phone number
-    // For example, you can set the state to switch back to the sign-up phase
-    setIsSignUpPhase(true);
   };
 
   return (
@@ -28,8 +23,10 @@ const SignUpPage = () => {
         <div className="mx-auto text-center max-w-md md:max-w-2xl space-y-10">
           {isSignUpPhase ? (
             <SignUp onSendOTP={handleSendOTP} />
+          ) : isVerified ? (
+            <Verified />
           ) : (
-            <OtpVerify onEditPhoneNumber={handleEditPhoneNumber} />
+            <OtpVerify setIsVerified={setIsVerified} />
           )}
         </div>
       </div>

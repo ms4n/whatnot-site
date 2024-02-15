@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/use-toast";
 
 import { useAppDispatch } from "@/redux/hooks";
 import { useAppSelector } from "@/redux/hooks";
@@ -20,7 +21,8 @@ import {
   setCountryCode,
   setPhoneNumber,
 } from "@/redux/features/phoneNumberSlice";
-import { useToast } from "@/components/ui/use-toast";
+
+import { sendOTP } from "@/app/utils/api";
 
 interface SignUpProps {
   onSendOTP: () => void;
@@ -51,10 +53,7 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
 
   const { toast } = useToast();
 
-  const handleSendOTP = () => {
-    // Your logic to send OTP
-    // You can use countryCode and phoneNumber in your API call
-
+  const handleSendOTP = async () => {
     if (!countryCode || !phoneNumber) {
       toast({
         className: "bg-red-600 text-white",
@@ -66,8 +65,24 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
       return;
     }
 
-    const phoneNumberString = (countryCode + phoneNumber).replace(/[+ ]/g, "");
-    console.log("Sending OTP to:", phoneNumberString);
+    try {
+      const phoneNumberString = (countryCode + phoneNumber).replace(
+        /[+ ]/g,
+        ""
+      );
+      await sendOTP(phoneNumberString);
+
+      console.log("OTP sent successfully"); // Do something after success
+    } catch (error) {
+      toast({
+        className: "bg-red-600 text-white",
+        variant: "destructive",
+        title: "OTP Send Failed",
+        description: "An error occurred while sending OTP. Please try again.",
+      });
+      console.error("Error sending OTP:", error);
+      return;
+    }
 
     onSendOTP();
   };
