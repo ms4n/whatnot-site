@@ -12,7 +12,7 @@ const SignUpPage = () => {
 
   const handleSendOTP = () => {
     // Your logic to handle OTP sending
-    // For example, you can set the state to switch to the OTP verification phase
+    // you can set the state to switch to the OTP verification phase
     setIsSignUpPhase(false);
   };
 

@@ -9,7 +9,7 @@ import {
 
 const Success = () => {
   return (
-    <main className="flex items-center justify-center text-left h-screen max-w-lg m-auto">
+    <div className="flex items-center justify-center text-left h-screen container max-w-lg">
       <Card>
         <CardHeader>
           <CardTitle className="">
@@ -21,7 +21,7 @@ const Success = () => {
           </CardDescription>
         </CardHeader>
       </Card>
-    </main>
+    </div>
   );
 };
 
