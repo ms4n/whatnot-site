@@ -4,7 +4,6 @@ const apiBaseUrl =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:7000/api";
 
 export async function sendOTP(phoneNumber: string) {
-  console.log(process.env.NEXT_PUBLIC_API_URL);
   try {
     const response = await axios.post(`${apiBaseUrl}/otp/generate-otp`, {
       phoneNumber,

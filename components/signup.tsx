@@ -71,8 +71,6 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
         ""
       );
       await sendOTP(phoneNumberString);
-
-      console.log("OTP sent successfully"); // Do something after success
     } catch (error) {
       toast({
         className: "bg-red-600 text-white",
