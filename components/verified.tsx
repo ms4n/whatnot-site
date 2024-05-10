@@ -12,6 +12,9 @@ import Image from "next/image";
 
 import { useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
+
+import { handleOauth } from "@/app/utils/api";
 
 const Verified = () => {
   const countryCode = useAppSelector((state) => state.phoneNumber.countryCode);
@@ -21,20 +24,23 @@ const Verified = () => {
 
   const router = useRouter();
 
-  const handleOauth = async () => {
-    axios
-      .get("http://localhost:7000/api/auth/google/auth-url", {
-        headers: {
-          phonenumber: phoneNumberString,
-        },
-        withCredentials: true,
-      })
-      .then((response) => {
-        router.push(response.data.authUrl);
-      })
-      .catch((error) => {
-        console.error("Error: ", error);
+  const { toast } = useToast();
+
+  const redirectToGoogle = async () => {
+    try {
+      const authUrl = await handleOauth(phoneNumberString);
+      router.push(authUrl);
+    } catch (error) {
+      console.error("Error: ", error);
+
+      toast({
+        className: "bg-red-600 text-white",
+        variant: "destructive",
+        title: "Google Authentication Error",
+        description:
+          "Oops! Something went wrong while trying to authenticate with Google. Please try again.",
       });
+    }
   };
 
   return (
@@ -51,7 +57,7 @@ const Verified = () => {
         </CardHeader>
         <div className="flex items-center justify-center mb-8">
           <Image
-            onClick={handleOauth}
+            onClick={redirectToGoogle}
             className="cursor-pointer hover:scale-105 transition"
             src={"/images/google-light.svg"}
             alt="google oauth login button"

@@ -32,6 +32,8 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
 
   const [otp, setOtp] = useState("");
 
+  const { toast } = useToast();
+
   useEffect(() => {
     toast({
       className: "bg-green-500 text-white",
@@ -131,8 +133,6 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
     fontSize: "16px",
     color: "black",
   };
-
-  const { toast } = useToast();
 
   return (
     <div className="flex items-center justify-center text-left">
