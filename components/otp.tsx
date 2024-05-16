@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 import { useAppSelector } from "@/redux/hooks";
 import { useToast } from "@/components/ui/use-toast";
@@ -150,6 +149,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
           <OTPInput
             value={otp}
             onChange={setOtp}
+            inputType="number"
             numInputs={6}
             inputStyle={customInputStyle}
             renderInput={(props) => <Input required {...props} />}
