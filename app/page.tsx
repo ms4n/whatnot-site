@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
+import FeatureCard from "@/components/feature-card";
 
 export default function Home() {
   const router = useRouter();
@@ -45,6 +46,13 @@ export default function Home() {
             >
               Get Started!
             </Button>
+          </div>
+          <div className="flex overflow-x-auto space-x-4 p-4 no-scrollbar">
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
           </div>
         </div>
 

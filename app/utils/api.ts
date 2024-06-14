@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/v1";
 
 export async function sendOTP(phoneNumber: string) {
   try {

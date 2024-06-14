@@ -53,6 +53,8 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
 
   const { toast } = useToast();
 
+  const [isOtpSending, setIsOtpSending] = useState(false);
+
   const handleSendOTP = async () => {
     if (!countryCode || !phoneNumber) {
       toast({
@@ -65,12 +67,15 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
       return;
     }
 
+    setIsOtpSending(true);
+
     try {
       const phoneNumberString = (countryCode + phoneNumber).replace(
         /[+ ]/g,
         ""
       );
       await sendOTP(phoneNumberString);
+      onSendOTP();
     } catch (error) {
       toast({
         className: "bg-red-600 text-white",
@@ -79,10 +84,8 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
         description: "An error occurred while sending OTP. Please try again.",
       });
       console.error("Error sending OTP:", error);
-      return;
+      setIsOtpSending(false);
     }
-
-    onSendOTP();
   };
 
   return (
@@ -122,8 +125,9 @@ const SignUp: React.FC<SignUpProps> = ({ onSendOTP }) => {
           <Button
             onClick={handleSendOTP}
             className="bg-green-500 text-white hover:scale-105 transition ring-2 ring-green-300"
+            disabled={isOtpSending}
           >
-            Send OTP
+            {isOtpSending ? "Sending..." : "Send OTP"}
           </Button>
         </CardFooter>
       </Card>

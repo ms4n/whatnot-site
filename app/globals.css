@@ -3,12 +3,32 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: "inter";
-    src: url("/fonts/inter-variable.ttf") format("truetype");
-  }
-  
-  @font-face {
-    font-family: "kollektif";
-    src: url("/fonts/kollektif-bold.ttf") format("truetype");
-  }
-  
+  font-family: "inter";
+  src: url("/fonts/inter-variable.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "kollektif";
+  src: url("/fonts/kollektif-bold.ttf") format("truetype");
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
