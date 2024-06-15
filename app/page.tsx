@@ -47,7 +47,15 @@ export default function Home() {
               Get Started!
             </Button>
           </div>
-          <div className="flex overflow-x-auto space-x-2 no-scrollbar">
+          {/* <div className="flex overflow-x-auto space-x-2 no-scrollbar">
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+          </div> */}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center">
             <FeatureCard />
             <FeatureCard />
             <FeatureCard />

@@ -3,7 +3,7 @@ import Image from "next/image";
 const FeatureCard = () => {
   return (
     <div className="flex-shrink-0 p-2">
-      <div className="max-w-sm bg-white ring-1 ring-inset ring-gray-500/10 rounded-lg p-4 overflow-hidden">
+      <div className="max-w-xl bg-white ring-1 ring-inset ring-gray-500/10 rounded-lg p-4 overflow-hidden">
         <div className="relative w-full">
           <div
             className="absolute inset-0 bg-green-500 rounded-t-lg shadow-lg"
@@ -12,7 +12,7 @@ const FeatureCard = () => {
           <Image
             src="/images/screenshot1.jpg"
             alt="features-screenshot-1"
-            width={400}
+            width={700}
             height={300}
             quality={100}
             className="rounded-lg relative"
@@ -20,7 +20,7 @@ const FeatureCard = () => {
         </div>
         <div className="p-4">
           <a href="#">
-            <h5 className="my-2 text-slate-700 text-xl font-semibold tracking-tight leading-tight text-gray-900 dark:text-white">
+            <h5 className="my-2 text-slate-700 text-lg md:text-xl  font-semibold tracking-tight leading-tight text-gray-900 dark:text-white">
               Noteworthy technology acquisitions 2021
             </h5>
           </a>
