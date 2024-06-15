@@ -47,7 +47,7 @@ export default function Home() {
               Get Started!
             </Button>
           </div>
-          <div className="flex overflow-x-auto space-x-4 p-4 no-scrollbar">
+          <div className="flex overflow-x-auto space-x-2 no-scrollbar">
             <FeatureCard />
             <FeatureCard />
             <FeatureCard />
