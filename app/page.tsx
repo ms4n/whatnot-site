@@ -30,10 +30,9 @@ export default function Home() {
               do?
             </h1>
             <p className="mt-6 m-auto text-sm md:text-base md:leading-7 sm:max-w-xl max-w-sm leading-6 text-gray-500">
-              Effortlessly sync WhatsApp with Google Suite: Transform WhatsApp
-              messages into notes on Google Docs, schedule events through
-              WhatsApp on Google Calendar, and securely save media on Google
-              Drive.
+              Seamlessly integrate WhatsApp with Google Suite: Convert messages
+              to Google Docs notes, schedule events on Google Calendar, and
+              securely save media on Google Drive.
             </p>
             <Button
               className="md:w-52 w-36 h-12 md:my-10 my-8 shadow-xl text-white font-semibold bg-green-500 rounded-lg hover:scale-105 transition ring-2 ring-green-300"
@@ -47,21 +46,21 @@ export default function Home() {
               Get Started!
             </Button>
           </div>
-          {/* <div className="flex overflow-x-auto space-x-2 no-scrollbar">
-            <FeatureCard />
-            <FeatureCard />
-            <FeatureCard />
-            <FeatureCard />
-            <FeatureCard />
-          </div> */}
-
-          <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center">
+          <div className="flex flex-col md:flex-row overflow-x-auto space-x-2 no-scrollbar">
             <FeatureCard />
             <FeatureCard />
             <FeatureCard />
             <FeatureCard />
             <FeatureCard />
           </div>
+
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center">
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+          </div> */}
         </div>
 
         <div

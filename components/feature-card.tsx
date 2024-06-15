@@ -3,10 +3,10 @@ import Image from "next/image";
 const FeatureCard = () => {
   return (
     <div className="flex-shrink-0 p-2">
-      <div className="max-w-xl bg-white ring-1 ring-inset ring-gray-500/10 rounded-lg p-4 overflow-hidden">
+      <div className="max-w-xl shadow bg-white ring-1 ring-inset ring-gray-500/10 rounded-lg pt-4 px-4 overflow-hidden">
         <div className="relative w-full">
           <div
-            className="absolute inset-0 bg-green-500 rounded-t-lg shadow-lg"
+            className="absolute inset-0 rounded-t-lg shadow-lg"
             style={{ filter: "blur(10px)", opacity: 0.4 }}
           ></div>
           <Image
