@@ -1,33 +1,40 @@
 import Image from "next/image";
+import { FC } from "react";
 
-const FeatureCard = () => {
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+
+const FeatureCard: FC<FeatureCardProps> = ({
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+}) => {
   return (
-    <div className="flex-shrink-0 p-2">
-      <div className="max-w-xl shadow backdrop-blur-sm bg-white/40 ring-1 ring-inset ring-gray-500/10 rounded-lg pt-4 px-4 overflow-hidden">
-        <div className="relative w-full">
-          <div
-            className="absolute inset-0 rounded-t-lg shadow-lg"
-            style={{ filter: "blur(10px)", opacity: 0.4 }}
-          ></div>
+    <div className="flex-shrink-0 p-2 font-inter">
+      <div className="max-w-sm md:max-w-md bg-white ring-1 ring-inset ring-gray-500/10 rounded-[24px] px-4 overflow-hidden">
+        <div className="p-4">
+          <h5 className="my-2 text-green-500 text-lg md:text-xl font-semibold tracking-tight leading-tight">
+            {title}
+          </h5>
+          <p className="text-sm md:text-base tracking-tight text-gray-500">
+            {description}
+          </p>
+        </div>
+
+        <div className="relative w-full pb-4">
           <Image
-            src="/images/screenshot1.jpg"
-            alt="features-screenshot-1"
+            src={imageSrc}
+            alt={imageAlt}
             width={700}
             height={300}
             quality={100}
-            className="rounded-lg relative"
+            className="rounded-[12px] relative"
           />
-        </div>
-        <div className="p-4">
-          <a href="#">
-            <h5 className="my-1 md:my-2 text-slate-700 text-lg md:text-xl  font-semibold tracking-tight leading-tight text-gray-900 dark:text-white">
-              Noteworthy technology acquisitions 2021
-            </h5>
-          </a>
-          <p className="text-sm md:text-base tracking-tight text-gray-500/80">
-            Here are the biggest enterprise technology acquisitions of 2021 so
-            far, in reverse chronological order.
-          </p>
         </div>
       </div>
     </div>
