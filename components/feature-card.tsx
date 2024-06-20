@@ -16,7 +16,7 @@ const FeatureCard: FC<FeatureCardProps> = ({
 }) => {
   return (
     <div className="flex-shrink-0 p-2 font-inter">
-      <div className="max-w-sm md:max-w-md bg-white ring-1 ring-inset ring-gray-500/10 rounded-[24px] px-4 overflow-hidden">
+      <div className="max-w-sm md:max-w-xl bg-white ring-1 ring-inset ring-gray-500/10 rounded-[24px] px-4 overflow-hidden">
         <div className="p-4">
           <h5 className="my-2 text-green-500 text-lg md:text-xl font-semibold tracking-tight leading-tight">
             {title}

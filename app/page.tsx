@@ -1,10 +1,19 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/navbar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 import FeatureCard from "@/components/feature-card";
-import { title } from "process";
+import Navbar from "@/components/navbar";
 
 export default function Home() {
   const router = useRouter();
@@ -47,13 +56,105 @@ export default function Home() {
               Get Started!
             </Button>
           </div>
-          <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 md:justify-items-center md:mx-auto md:gap-10 md:max-w-5xl px-4 md:px-6 mt-6 md:mt-12">
-            <FeatureCard
-              title="Hello"
-              description="check check description check"
-              imageSrc="/images/screenshot1.jpg"
-              imageAlt="whatsapp-screenshot-demo1"
-            />
+          {/* <div className="md:max-w-xl mx-auto px-4 mt-6 md:mt-12">
+            <Carousel>
+              <CarouselContent>
+                <CarouselItem>
+                  <FeatureCard
+                    title="Hello"
+                    description="check check description check"
+                    imageSrc="/images/screenshot1.jpg"
+                    imageAlt="whatsapp-screenshot-demo1"
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <FeatureCard
+                    title="Hello"
+                    description="check check description check"
+                    imageSrc="/images/screenshot1.jpg"
+                    imageAlt="whatsapp-screenshot-demo1"
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <FeatureCard
+                    title="Hello"
+                    description="check check description check"
+                    imageSrc="/images/screenshot1.jpg"
+                    imageAlt="whatsapp-screenshot-demo1"
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <FeatureCard
+                    title="Hello"
+                    description="check check description check"
+                    imageSrc="/images/screenshot1.jpg"
+                    imageAlt="whatsapp-screenshot-demo1"
+                  />
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div> */}
+
+          <div className="max-w-xs md:max-w-lg mx-auto px-4 mt-6 md:mt-10">
+            <Carousel>
+              <CarouselContent>
+                <CarouselItem>
+                  <Image
+                    src={"/images/docs-final.png"}
+                    alt="whatsapp-screenshot-iphone"
+                    width={600}
+                    height={500}
+                    quality={100}
+                  />
+                  <div className="text-center mt-6 md:mt-10 md:max-w-md mx-auto">
+                    <h3 className="md:text-xl font-medium md:font-semibold text-slate-700">
+                      Schedule your events on google calendar right on whatsapp!
+                    </h3>
+                    <p className="text-xs md:text-sm mt-1 text-gray-500">
+                      Get a quickly shareable event template link
+                    </p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="text-center mb-10 md:max-w-md mx-auto">
+                    <h3 className="md:text-xl font-medium md:font-semibold text-slate-700">
+                      Schedule your events on google calendar right on whatsapp!
+                    </h3>
+                    <p className="text-xs md:text-sm mt-1 text-gray-500">
+                      Get a quickly shareable event template link
+                    </p>
+                  </div>
+                  <Image
+                    src={"/images/drive-final.png"}
+                    alt="whatsapp-screenshot-iphone"
+                    width={600}
+                    height={500}
+                    quality={100}
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="text-center mb-10 md:max-w-md mx-auto">
+                    <h3 className="md:text-xl font-medium md:font-semibold text-slate-700">
+                      Schedule your events on google calendar right on whatsapp!
+                    </h3>
+                    <p className="text-xs md:text-sm mt-1 text-gray-500">
+                      Get a quickly shareable event template link
+                    </p>
+                  </div>
+                  <Image
+                    src={"/images/reminder-final.png"}
+                    alt="whatsapp-screenshot-iphone"
+                    width={600}
+                    height={500}
+                    quality={100}
+                  />
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </div>
         </div>
       </div>
