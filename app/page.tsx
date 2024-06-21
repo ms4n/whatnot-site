@@ -102,6 +102,23 @@ export default function Home() {
               <CarouselContent>
                 <CarouselItem>
                   <Image
+                    src={"/images/calendar-final.png"}
+                    alt="whatsapp-screenshot-iphone"
+                    width={600}
+                    height={500}
+                    quality={100}
+                  />
+                  <div className="text-center mt-6 md:mt-10 md:max-w-md mx-auto">
+                    <h3 className="md:text-xl font-medium md:font-semibold text-slate-700">
+                      Schedule your events on google calendar right on whatsapp!
+                    </h3>
+                    <p className="text-xs md:text-sm mt-1 text-gray-500">
+                      Get a quickly shareable event template link
+                    </p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <Image
                     src={"/images/docs-final.png"}
                     alt="whatsapp-screenshot-iphone"
                     width={600}
@@ -118,14 +135,6 @@ export default function Home() {
                   </div>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="text-center mb-10 md:max-w-md mx-auto">
-                    <h3 className="md:text-xl font-medium md:font-semibold text-slate-700">
-                      Schedule your events on google calendar right on whatsapp!
-                    </h3>
-                    <p className="text-xs md:text-sm mt-1 text-gray-500">
-                      Get a quickly shareable event template link
-                    </p>
-                  </div>
                   <Image
                     src={"/images/drive-final.png"}
                     alt="whatsapp-screenshot-iphone"
@@ -133,9 +142,7 @@ export default function Home() {
                     height={500}
                     quality={100}
                   />
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="text-center mb-10 md:max-w-md mx-auto">
+                  <div className="text-center mt-6 md:mt-10 md:max-w-md mx-auto">
                     <h3 className="md:text-xl font-medium md:font-semibold text-slate-700">
                       Schedule your events on google calendar right on whatsapp!
                     </h3>
@@ -143,6 +150,8 @@ export default function Home() {
                       Get a quickly shareable event template link
                     </p>
                   </div>
+                </CarouselItem>
+                <CarouselItem>
                   <Image
                     src={"/images/reminder-final.png"}
                     alt="whatsapp-screenshot-iphone"
@@ -150,6 +159,14 @@ export default function Home() {
                     height={500}
                     quality={100}
                   />
+                  <div className="text-center mt-6 md:mt-10 md:max-w-md mx-auto">
+                    <h3 className="md:text-xl font-medium md:font-semibold text-slate-700">
+                      Schedule your events on google calendar right on whatsapp!
+                    </h3>
+                    <p className="text-xs md:text-sm mt-1 text-gray-500">
+                      Get a quickly shareable event template link
+                    </p>
+                  </div>
                 </CarouselItem>
               </CarouselContent>
               <CarouselPrevious />
